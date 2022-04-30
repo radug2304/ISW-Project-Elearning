@@ -58,7 +58,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveMember(@Valid Member member, BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
-		String errEmail = validationService.validateEmail(member);
+		String errEmail = validationService.validateEmail(member.getEmail());
 
 		if(!errEmail.isEmpty()){
 			bindingResult.rejectValue("email","email",errEmail);

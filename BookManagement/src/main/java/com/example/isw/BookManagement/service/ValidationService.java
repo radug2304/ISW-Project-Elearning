@@ -14,17 +14,17 @@ public class ValidationService {
     private MemberRepository memberRepository;
 
 
-    public String validateEmail(Member member){
+    public String validateEmail(String email){
         String regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}";
         String message = "";
 
-        if(!member.getEmail().equals("")) {
-            boolean isValid = Pattern.compile(regexp).matcher(member.getEmail()).matches();
+        if(!email.equals("")) {
+            boolean isValid = Pattern.compile(regexp).matcher(email).matches();
 
             if (!isValid)
                 message = "Wrong email format!";
             else
-                if(memberRepository.findByEmail(member.getEmail()) != null)
+                if(memberRepository.findByEmail(email) != null)
                     message = "Email already in use!";
         }
 
